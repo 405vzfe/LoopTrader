@@ -87,7 +87,7 @@ class TelegramNotifier(Notifier, Component):
         request = baseRR.SetKillSwitchRequestMessage(True)
         self.mediator.set_kill_switch(request)
         self.reply_text(
-            r"Kill switch, flipped. Awaiting confirmation...",
+            r"Kill switch, flipped\. Awaiting confirmation\.\.\.",
             update.message,
             None,
             ParseMode.MARKDOWN_V2,
@@ -96,7 +96,7 @@ class TelegramNotifier(Notifier, Component):
     def help(self, update: Update, context: CallbackContext):
         """Method to handle the /help command"""
         self.reply_text(
-            r"Welcome to LoopTrader, I'm a Telegram bot here to help you manage your LoopTrader\! There are a few things I can do: \r\n\n \- *Push Notifications* will alert you to alerts you setup in your LoopTrader\. \r\n \- */killswitch* will shutdown your LoopTrader\\. \r\n \- */account* will display your latest account details\. \r\n \- */orders* will display your open Orders. \r\n \- */positions* will show your open Positions\\.",
+            r"Welcome to LoopTrader, I'm a Telegram bot here to help you manage your LoopTrader\! There are a few things I can do: \r\n\n \- *Push Notifications* will alert you to alerts you setup in your LoopTrader\. \r\n \- */killswitch* will shutdown your LoopTrader\. \r\n \- */account* will display your latest account details\. \r\n \- */orders* will display your open Orders\. \r\n \- */positions* will show your open Positions\.",
             update.message,
             None,
             ParseMode.MARKDOWN_V2,
@@ -132,7 +132,7 @@ class TelegramNotifier(Notifier, Component):
         try:
             if context.args is None:
                 self.reply_text(
-                    "Please enter a single positive integer.",
+                    r"Please enter a single positive integer\.",
                     update.message,
                     None,
                     ParseMode.HTML,
@@ -143,7 +143,7 @@ class TelegramNotifier(Notifier, Component):
 
             if len(context.args) != 1 or rows <= 0:
                 self.reply_text(
-                    "There was an error with your input. Please enter a single positive integer.",
+                    r"There was an error with your input\. Please enter a single positive integer\.",
                     update.message,
                     None,
                     ParseMode.HTML,
@@ -151,7 +151,7 @@ class TelegramNotifier(Notifier, Component):
                 return
         except Exception:
             self.reply_text(
-                "There was an error with your input. Please enter a single positive integer.",
+                r"There was an error with your input\. Please enter a single positive integer\.",
                 update.message,
                 None,
                 ParseMode.HTML,
@@ -183,13 +183,13 @@ class TelegramNotifier(Notifier, Component):
         logger.warning('Update "%s" caused error "%s"', update, context.error)
 
         self.reply_text(
-            r"An error occured, check the logs.", update.message, None, ParseMode.HTML
+            r"An error occured, check the logs\.", update.message, None, ParseMode.HTML
         )
 
     def text(self, update: Update, context: CallbackContext):
         """Method to handle normal text"""
         self.reply_text(
-            r"Sorry, I don't recognize your command.",
+            "Sorry, I don't recognize your command.",
             update.message,
             None,
             ParseMode.HTML,

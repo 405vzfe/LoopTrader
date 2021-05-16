@@ -6,8 +6,13 @@ from basetypes.Database.sqliteDatabase import SqliteDatabase
 from basetypes.Mediator.botMediator import Bot
 from basetypes.Notifier.telegramnotifier import TelegramNotifier
 from basetypes.Strategy.cspByDeltaStrategy import CspByDeltaStrategy
+from dotenv import load_dotenv
 
-if __name__ == "__main__":
+# load env
+load_dotenv()
+
+
+def main():
     # Create Logging
     logging.config.fileConfig(
         "logConfig.ini",
@@ -22,7 +27,7 @@ if __name__ == "__main__":
     tdabroker = TdaBroker()
 
     # Create our local DB
-    sqlitedb = SqliteDatabase("LoopTrader.db")
+    sqlitedb = SqliteDatabase("./pers/LoopTrader.db")
 
     # Create our notifier
     telegram_bot = TelegramNotifier()
@@ -37,3 +42,6 @@ if __name__ == "__main__":
 
     # Run Bot
     bot.process_strategies()
+
+
+main()
