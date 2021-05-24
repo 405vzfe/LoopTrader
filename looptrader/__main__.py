@@ -6,13 +6,8 @@ from basetypes.Database.sqliteDatabase import SqliteDatabase
 from basetypes.Mediator.botMediator import Bot
 from basetypes.Notifier.telegramnotifier import TelegramNotifier
 from basetypes.Strategy.cspByDeltaStrategy import CspByDeltaStrategy
-from dotenv import load_dotenv
 
-# load env
-load_dotenv()
-
-
-def main():
+if __name__ == "__main__":
     # Create Logging
     logging.config.fileConfig(
         "logConfig.ini",
@@ -21,7 +16,9 @@ def main():
     )
 
     # Create our strategies
-    cspstrat = CspByDeltaStrategy(strategy_name="CSP1")
+    cspstrat = CspByDeltaStrategy(
+        strategy_name="CSP1", underlying="XSP", portfolioallocationpercent=0.75
+    )
 
     # Create our broker
     tdabroker = TdaBroker()
@@ -44,4 +41,4 @@ def main():
     bot.process_strategies()
 
 
-main()
+# main()

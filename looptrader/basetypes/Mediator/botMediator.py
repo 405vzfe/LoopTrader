@@ -82,6 +82,7 @@ class Bot(Mediator):
         self.send_notification(
             baseRR.SendNotificationRequestMessage(message="Bot Terminated.")
         )
+        raise SystemExit
 
     def get_account(
         self, request: baseRR.GetAccountRequestMessage
